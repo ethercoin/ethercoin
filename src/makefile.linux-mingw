@@ -5,7 +5,8 @@
 TARGET_PLATFORM:=i686
 #TARGET_PLATFORM:=x86_64
 
-DEPSDIR:=/usr/$(TARGET_PLATFORM)-w64-mingw32
+DEPSDIR:=/home/coins/deps
+DEPSDIR2:=/usr/$(TARGET_PLATFORM)-w64-mingw32
 CC:=$(TARGET_PLATFORM)-w64-mingw32-gcc
 CXX:=$(TARGET_PLATFORM)-w64-mingw32-g++
 RANLIB=$(TARGET_PLATFORM)-w64-mingw32-ranlib
@@ -17,14 +18,14 @@ INCLUDEPATHS= \
  -I"$(CURDIR)" \
  -I"$(CURDIR)"/obj \
  -I"$(DEPSDIR)/boost_1_55_0" \
- -I"$(DEPSDIR)/db-6.0.20/build_unix" \
- -I"$(DEPSDIR)/openssl-1.0.1f/include" \
- -I"$(DEPSDIR)"
+ -I"$(DEPSDIR)/db-5.3.28/build_unix" \
+ -I"$(DEPSDIR)/openssl-1.0.1h/include" \
+ -I"$(DEPSDIR2)"
 
 LIBPATHS= \
  -L"$(DEPSDIR)/boost_1_55_0/stage/lib" \
- -L"$(DEPSDIR)/db-6.0.20/build_unix" \
- -L"$(DEPSDIR)/openssl-1.0.1f"
+ -L"$(DEPSDIR)/db-5.3.28/build_unix" \
+ -L"$(DEPSDIR)/openssl-1.0.1h"
 
 LIBS= \
  -l boost_system-mt \
@@ -101,7 +102,7 @@ OBJS= \
     obj/zerocoin/SpendMetaData.o \
     obj/zerocoin/ZeroTest.o
 
-all: blackcoind.exe
+all: ethercoind.exe
 
 LIBS += $(CURDIR)/leveldb/libleveldb.a $(CURDIR)/leveldb/libmemenv.a
 DEFS += -I"$(CURDIR)/leveldb/include"
@@ -122,9 +123,9 @@ obj/%.o: %.cpp $(HEADERS)
 obj/zerocoin/%.o: zerocoin/%.cpp $(HEADERS)
 	$(CXX) -c $(CFLAGS) -o $@ $<
 
-blackcoind.exe: $(OBJS:obj/%=obj/%)
+ethercoind.exe: $(OBJS:obj/%=obj/%)
 	$(CXX) $(CFLAGS) $(LDFLAGS) -o $@ $(LIBPATHS) $^ $(LIBS) -lshlwapi
-	$(STRIP) blackcoind.exe
+	$(STRIP) ethercoind.exe
 
 obj/scrypt-x86.o: scrypt-x86.S
 	$(CXX) -c $(CFLAGS) -MMD -o $@ $<
@@ -135,7 +136,7 @@ obj/scrypt-x86_64.o: scrypt-x86_64.S
 clean:
 	-rm -f obj/*.o
 	-rm -f obj/zerocoin/*.o
-	-rm -f blackcoind.exe
+	-rm -f ethercoind.exe
 	-rm -f obj/build.h
 	cd leveldb && TARGET_OS=OS_WINDOWS_CROSSCOMPILE $(MAKE) clean && cd ..
 

@@ -364,7 +364,7 @@ CBlock* CreateNewBlock(CWallet* pwallet, bool fProofOfStake, int64_t* pFees)
             printf("CreateNewBlock(): total size %"PRIu64"\n", nBlockSize);
 
         if (!fProofOfStake)
-            pblock->vtx[0].vout[0].nValue = GetProofOfWorkReward(nFees);
+            pblock->vtx[0].vout[0].nValue = GetProofOfWorkReward(nFees,nHeight);
 
         if (pFees)
             *pFees = nFees;
@@ -529,7 +529,7 @@ void StakeMiner(CWallet *pwallet)
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
 
     // Make this thread recognisable as the mining thread
-    RenameThread("blackcoin-miner");
+    RenameThread("ethercoin-miner");
 
     bool fTryToSync = true;
 
@@ -555,10 +555,10 @@ void StakeMiner(CWallet *pwallet)
                 return;
         }
 
-        if (fTryToSync)
+        if (fTryToSync)  // used to be 3 nodes, changed to 2 for testing
         {
             fTryToSync = false;
-            if (vNodes.size() < 3 || nBestHeight < GetNumBlocksOfPeers())
+            if (vNodes.size() < 2 || nBestHeight < GetNumBlocksOfPeers())
             {
                 MilliSleep(60000);
                 continue;

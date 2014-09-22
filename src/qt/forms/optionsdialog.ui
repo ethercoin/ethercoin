@@ -33,7 +33,7 @@
        <item>
         <widget class="QLabel" name="transactionFeeInfoLabel">
          <property name="text">
-          <string>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 0.01 recommended.</string>
+          <string>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 0.10 recommended.</string>
          </property>
          <property name="textFormat">
           <enum>Qt::PlainText</enum>
@@ -125,10 +125,10 @@
        <item>
         <widget class="QCheckBox" name="bitcoinAtStartup">
          <property name="toolTip">
-          <string>Automatically start BlackCoin after logging in to the system.</string>
+          <string>Automatically start Ethercoin after logging in to the system.</string>
          </property>
          <property name="text">
-          <string>&amp;Start BlackCoin on system login</string>
+          <string>&amp;Start Ethercoin on system login</string>
          </property>
         </widget>
        </item>
@@ -155,7 +155,7 @@
        <item>
         <widget class="QCheckBox" name="mapPortUpnp">
          <property name="toolTip">
-          <string>Automatically open the BlackCoin client port on the router. This only works when your router supports UPnP and it is enabled.</string>
+          <string>Automatically open the Ethercoin client port on the router. This only works when your router supports UPnP and it is enabled.</string>
          </property>
          <property name="text">
           <string>Map port using &amp;UPnP</string>
@@ -165,7 +165,7 @@
        <item>
         <widget class="QCheckBox" name="connectSocks">
          <property name="toolTip">
-          <string>Connect to the BlackCoin network through a SOCKS proxy (e.g. when connecting through Tor).</string>
+          <string>Connect to the Ethercoin network through a SOCKS proxy (e.g. when connecting through Tor).</string>
          </property>
          <property name="text">
           <string>&amp;Connect through SOCKS proxy:</string>
@@ -339,7 +339,7 @@
          <item>
           <widget class="QValueComboBox" name="lang">
            <property name="toolTip">
-            <string>The user interface language can be set here. This setting will take effect after restarting BlackCoin.</string>
+            <string>The user interface language can be set here. This setting will take effect after restarting Ethercoin.</string>
            </property>
           </widget>
          </item>
